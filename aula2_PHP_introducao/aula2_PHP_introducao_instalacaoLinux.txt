@@ -1,0 +1,5 @@
+Para instalar o ambiente LAMP no Linux, pode-se seguir este tutorial:
+
+https://www.nerdlivre.com.br/como-instalar-apache-php-mysql-e-phpmyadmin-no-ubuntu-e-derivados/
+
+ATENÇÃO: a configuração do MySQL (passo 5) não precisa ser realizada, pois poderemos utilizar o usuário "root" (a senha padrão é em branco).
