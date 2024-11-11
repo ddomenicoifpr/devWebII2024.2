@@ -3,11 +3,12 @@
 include_once("persistencia.php");
 
 //Array que armazena os livros já salvos no arquivo JSON
-$livros = array();
+$livros = buscarDados("livros.json");
 
 //Verificar se o usuário já submeteu o formulário
 if(isset($_POST["titulo"])) {
     $titulo = $_POST["titulo"];
+    $autor = $_POST["autor"];
     $genero = $_POST["genero"];
     $paginas = $_POST["qtdPag"];
 
@@ -16,6 +17,7 @@ if(isset($_POST["titulo"])) {
 
     $livro = array("id" => $id,
                    "titulo" => $titulo,
+                   "autor" => $autor,
                    "genero" => $genero,
                    "qtdPag" => $paginas);
 
@@ -23,6 +25,9 @@ if(isset($_POST["titulo"])) {
 
     //Persistência dos dados no arquivo JSON
     salvarDados($livros, "livros.json");
+
+    //Redirecionar para evitar o reenvio do formulário
+    header("location: livros.php");
 }
 
 ?>
@@ -43,6 +48,11 @@ if(isset($_POST["titulo"])) {
     <form method="POST" action="">
         <input type="text" name="titulo" 
             placeholder="Informe o título" >
+
+        <br><br>
+        
+        <input type="text" name="autor" 
+            placeholder="Informe o autor" >
 
         <br><br>
 
@@ -66,6 +76,55 @@ if(isset($_POST["titulo"])) {
     </form>
 
     <h3>Listagem</h3>
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Gênero</th>
+            <th>Páginas</th>
+            <th></th>
+        </tr>
+
+        <!-- Dados dos livros -->
+        <?php foreach($livros as $l): ?>
+            <tr>
+                <td><?php echo $l["id"]; ?></td>
+                <td><?php echo $l["titulo"]; ?></td>
+                <td><?php echo $l["autor"]; ?></td>
+                <td>
+                    <?php 
+                        switch($l["genero"]) {
+                            case "D":
+                                echo "Drama";
+                                break;
+
+                            case "F":
+                                echo "Ficção";
+                                break;
+
+                            case "R":
+                                echo "Romance";
+                                break;
+
+                            case "O":
+                                echo "Outros";
+                                break;
+
+                            default:
+                                echo $l["genero"];
+
+                        } 
+                    ?>
+                </td>
+                <td><?php echo $l["qtdPag"]; ?></td>
+                <td><a href="livros_exc.php?id=<?php echo $l['id'] ?>">
+                        Excluir</a></td>
+            </tr>
+        <?php endforeach; ?>
+
+    </table>
     
 </body>
 </html>
