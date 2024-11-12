@@ -19,7 +19,7 @@ $livros = buscarDados("livros.json");
 //print_r($livros);
 
 //3- Encontrar o índice do livro no array (procurar pelo ID recebido)
-$idxLivroExcluir = 0;
+$idxLivroExcluir = -1;
 for($i=0; $i<count($livros); $i++) {
     if($livros[$i]['id'] == $id) {
         $idxLivroExcluir = $i;
@@ -28,7 +28,7 @@ for($i=0; $i<count($livros); $i++) {
 }
 
 //3.1- Validar se o ID corresponde a um dos livros salvo no JSON
-if(! $idxLivroExcluir) {
+if($idxLivroExcluir < 0) {
     echo "ID do livro não encontrado!<br>";
     echo "<a href='livros.php'>Voltar</a>";
     exit;
