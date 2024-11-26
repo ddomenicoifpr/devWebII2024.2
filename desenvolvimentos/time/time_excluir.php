@@ -1,5 +1,7 @@
 <?php
 
+include_once("Connection.php");
+
 //Capturando e validando o ID para exclusão
 $id = 0;
 if(isset($_GET['id']))
@@ -12,7 +14,12 @@ if(! $id) {
 }
 
 //Executar a exclusão no banco de dados
+$conn = Connection::getConnection();
 
+$sql = "DELETE FROM times WHERE id = ?";
+
+$stm = $conn->prepare($sql);
+$stm->execute([$id]);
 
 //Mensagem para exibir que o time foi excluido
 echo "Time excluído do banco de dados!<br>";
