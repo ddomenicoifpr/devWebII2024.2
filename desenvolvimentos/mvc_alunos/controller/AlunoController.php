@@ -11,7 +11,6 @@ class AlunoController {
     }
 
     public function listar() {
-
         $alunos = $this->alunoDao->list();
         return $alunos;
     }
