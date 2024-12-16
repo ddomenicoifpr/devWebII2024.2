@@ -1,6 +1,12 @@
 <?php
 #Página com o formulário de alunos
 
+include_once(__DIR__ . "/../../controller/CursoController.php");
+
+$cursoCont = new CursoController();
+$cursos = $cursoCont->listar();
+//print_r($cursos);
+
 //Inclui o HEADER
 require_once(__DIR__ . "/../include/header.php");
 
@@ -33,6 +39,9 @@ require_once(__DIR__ . "/../include/header.php");
         <label for="selCurso">Curso:</label>
         <select id="selCurso" name="curso">
             <option value="">---Selecione---</option>
+            <?php foreach($cursos as $c): ?>
+                <option value="<?= $c->getId() ?>"><?= $c ?></option>        
+            <?php endforeach; ?>
        </select>        
     </div>
 

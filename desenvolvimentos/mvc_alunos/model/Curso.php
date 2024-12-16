@@ -6,6 +6,10 @@ class Curso {
     private ?string $nome;
     private ?string $turno;
 
+    public function __toString() {
+        return $this->nome . " (" . $this->turno . ")";
+    }
+
     /**
      * Get the value of id
      */

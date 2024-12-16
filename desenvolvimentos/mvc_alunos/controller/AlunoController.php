@@ -15,4 +15,17 @@ class AlunoController {
         return $alunos;
     }
 
+    public function buscarPorId(int $id) {
+        $aluno = $this->alunoDao->findById($id);
+        return $aluno;
+    }
+
+    public function inserir(Aluno $aluno) {
+        $this->alunoDao->insert($aluno);
+    }
+
+    public function excluir(int $id) {
+        $this->alunoDao->delete($id);
+    }
+
 }
