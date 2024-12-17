@@ -6,10 +6,13 @@ include_once(__DIR__ . "/../../controller/AlunoController.php");
 $msgErro = "";
 $aluno = null;
 
+$alunoCont = new AlunoController();
+
 if(isset($_POST['nome'])) {
     //Se o usuário já clicou no gravar (submeteu o formulário)
 
     //Capturar os dados preenchidos no formulário
+    $id = $_POST['id'];
     $nome = trim($_POST['nome']) ? trim($_POST['nome']) : null;
     $idade = is_numeric($_POST['idade']) ? $_POST['idade'] : null;
     $estrang = trim($_POST['estrangeiro']) ? trim($_POST['estrangeiro']) : null;
@@ -17,7 +20,7 @@ if(isset($_POST['nome'])) {
 
     //Criar o objeto Aluno
     $aluno = new Aluno();
-    $aluno->setId(0);
+    $aluno->setId($id);
     $aluno->setNome($nome);
     $aluno->setIdade($idade);
     $aluno->setEstrangeiro($estrang);
@@ -32,8 +35,7 @@ if(isset($_POST['nome'])) {
     //print_r($aluno);
 
     //Chama o controller para inserir o aluno
-    $alunoCont = new AlunoController();
-    $erros = $alunoCont->inserir($aluno);
+    $erros = $alunoCont->alterar($aluno);
 
     if(empty($erros)) {
         //Redireciona para a listagem
@@ -41,6 +43,21 @@ if(isset($_POST['nome'])) {
         exit;
     } else
         $msgErro = implode("<br>", $erros);
+} else {
+    //O usuário ainda não clicou no gravar
+    $id = 0;
+    if(isset($_GET['id']))
+        $id = $_GET['id'];
+
+    //Carregar os dados do aluno
+    $aluno = $alunoCont->buscarPorId($id);
+
+    //Validar se o aluno existe
+    if(! $aluno) {
+        echo "Aluno não encontrado!<br>";
+        echo "<a href='listar.php'>Voltar</a>";
+        exit;
+    }
 }
 
 //Incluir o formulário

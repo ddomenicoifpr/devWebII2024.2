@@ -1,6 +1,7 @@
 <?php
 #Página com o formulário de alunos
 
+
 include_once(__DIR__ . "/../../controller/CursoController.php");
 
 $cursoCont = new CursoController();
@@ -18,20 +19,26 @@ require_once(__DIR__ . "/../include/header.php");
     <div>
         <label for="txtNome">Nome:</label>
         <input type="text" id="txtNome" name="nome" 
-            size="45" maxlength="70" />
+            size="45" maxlength="70" 
+            value="<?= ($aluno ? $aluno->getNome() : '') ?>" />
     </div>
 
     <div>
         <label for="txtIdade">Idade:</label>
-        <input type="number" id="txtIdade" name="idade" />
+        <input type="number" id="txtIdade" name="idade"
+            value="<?= ($aluno ? $aluno->getIdade() : '') ?>" />
     </div>
 
     <div >
         <label for="selEst">Estrangeiro:</label>
         <select id="selEst" name="estrangeiro">
             <option value="">---Selecione---</option>
-            <option value="S">Sim</option>
-            <option value="N">Não</option>
+            <option value="S"
+                <?= ($aluno && $aluno->getEstrangeiro() == 'S' ? 'selected' : '') ?> >
+                 Sim</option>
+            <option value="N"
+                <?= ($aluno && $aluno->getEstrangeiro() == 'N' ? 'selected' : '') ?> >
+                Não</option>
         </select>
     </div>
 
@@ -40,16 +47,25 @@ require_once(__DIR__ . "/../include/header.php");
         <select id="selCurso" name="curso">
             <option value="">---Selecione---</option>
             <?php foreach($cursos as $c): ?>
-                <option value="<?= $c->getId() ?>"><?= $c ?></option>        
+                <option value="<?= $c->getId() ?>" 
+                    <?= ($aluno && $aluno->getCurso() && 
+                        $aluno->getCurso()->getId() == $c->getId() ? "selected" : "" ) ?> >
+                <?= $c ?></option>        
             <?php endforeach; ?>
        </select>        
     </div>
 
+    <input type="hidden" name="id" 
+        value="<?= ($aluno ? $aluno->getId() : '') ?>">
+
     <button type="submit">Gravar</button>
 </form>
 
-<div id="msgErro" style="color: red;">
-</div>
+<?php if($msgErro): ?>
+    <div id="msgErro" style="color: red;">
+        <?= $msgErro ?>
+    </div>
+<?php endif; ?>
 
 <div>
     <a href="listar.php">Voltar</a>
