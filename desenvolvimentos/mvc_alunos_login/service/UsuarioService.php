@@ -17,4 +17,23 @@ class UsuarioService {
         return $erros;
     }
 
+    public function salvarUsuarioSessao(Usuario $usuario) {
+        $this->habilitarSessao();
+
+        $_SESSION['USUARIO_ID'] = $usuario->getId();
+        $_SESSION['USUARIO_NOME'] = $usuario->getNome();
+    }
+
+    public function removerUsuarioSessao() {
+        $this->habilitarSessao();
+
+        session_unset();
+
+        session_destroy();
+    }
+
+    private function habilitarSessao() {
+        session_start();
+    }
+
 }

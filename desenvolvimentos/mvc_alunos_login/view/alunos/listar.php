@@ -14,10 +14,10 @@ include_once(__DIR__ . "/../include/header.php");
 <h2>Listagem de alunos</h2>
 
 <div>
-    <a href="inserir.php">Inserir</a>
+    <a href="inserir.php" class="btn btn-primary">Inserir</a>
 </div>
 
-<table border="1">
+<table class="table table-striped mt-3">
     <tr>
         <th>Nome</th>
         <th>Idade</th>

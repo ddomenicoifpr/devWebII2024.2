@@ -9,3 +9,6 @@ define("DB_HOST", "mysql-server");
 define("DB_NAME", "mvc_alunos");
 define("DB_USER", "root");
 define("DB_PASSWORD", "root");
+
+//Configuração da URL base da aplicação
+define("BASE_URL", "/mvc_alunos_login");
