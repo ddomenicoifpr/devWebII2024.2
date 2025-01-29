@@ -1,0 +1,15 @@
+A instalação do Composer é simples e pode ser encontrada no link abaixo:
+
+WINDOWS
+
+- Utilizar o PHP na linha de comando:
+https://www.youtube.com/watch?v=hZ0ebXa6is8
+
+- Instalar e configurar o composer
+https://www.youtube.com/watch?v=URsHXA664KA
+
+
+
+LINUX
+No Linux, pode-se utilizar as instruções disponíveis em https://getcomposer.org/download/.
+https://youtu.be/FE7GSTHX0zo?t=151
