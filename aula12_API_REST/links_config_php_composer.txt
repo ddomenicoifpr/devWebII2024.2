@@ -11,5 +11,7 @@ https://www.youtube.com/watch?v=URsHXA664KA
 
 
 LINUX
-No Linux, pode-se utilizar as instruções disponíveis em https://getcomposer.org/download/.
+No Linux, pode-se utilizar as instruções disponíveis em https://getcomposer.org/download/
+
+Vídeo com o tutorial:
 https://youtu.be/FE7GSTHX0zo?t=151
