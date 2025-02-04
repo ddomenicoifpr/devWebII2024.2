@@ -1,4 +1,6 @@
 <?php
+
+use App\Controller\ClubeController;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
@@ -18,9 +20,22 @@ $app->get('/', function (Request $request, Response $response, $args) {
     return $response;
 });
 
+$app->get("/hello/{nome}", function(Request $request, Response $response, $args) {
+    $nome = $args["nome"];
+
+    $response->getBody()->write("Olá Mundo " . $nome . "!");
+    return $response;
+});
+
+$app->get("/clubes", ClubeController::class . ":listar");
+
+
+
 //Tratamento para rota não encontrada
 $app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function ($request, $response) {
     throw new HttpNotFoundException($request, "Esta rota não existe na API!");
 });
 
 $app->run();
+
+http://localhost:8082/futebol_api/clubes

@@ -25,6 +25,10 @@ class ClubeController {
 	}
 
     public function listar(Request $request, Response $response, array $args): Response {
+		$clubes = $this->clubeDAO->list();
+
+		$response->getBody()->write(print_r($clubes, true));
+		
 		return $response;
     }
 
