@@ -37,5 +37,3 @@ $app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function ($
 });
 
 $app->run();
-
-http://localhost:8082/futebol_api/clubes
