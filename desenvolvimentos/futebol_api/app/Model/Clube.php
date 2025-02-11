@@ -4,7 +4,7 @@ namespace App\Model;
 
 use \JsonSerializable;
 
-class Clube {
+class Clube implements JsonSerializable {
 
     private ?int $id;
     private ?string $nome;
@@ -16,6 +16,13 @@ class Clube {
         $this->nome = null;
         $this->cidade = null;
         $this->imagem = null;
+    }
+
+    public function jsonSerialize(): array {
+        return array("id" => $this->id,
+                     "nome" => $this->nome,
+                     "cidade" => $this->cidade,
+                     "imagem" => $this->imagem);
     }
 
     public function getId()

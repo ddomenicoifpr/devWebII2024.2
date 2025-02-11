@@ -27,7 +27,9 @@ $app->get("/hello/{nome}", function(Request $request, Response $response, $args)
     return $response;
 });
 
+//CLUBES
 $app->get("/clubes", ClubeController::class . ":listar");
+$app->post("/clubes", ClubeController::class . ":inserir");
 
 
 
